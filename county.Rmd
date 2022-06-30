@@ -7,6 +7,10 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(tidycensus)
+library(ggthemes)
+library(tigris)
 ```
 This map shows the racial geography of the county I live in, Franklin County, OH. 
 ```{r}
