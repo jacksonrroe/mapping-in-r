@@ -1,0 +1,18 @@
+---
+title: "index.Rmd"
+author: "Jackson Roe"
+date: '2022-06-30'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(tidycensus)
+library(ggthemes)
+library(tigris)
+```
+I will be gathering info from the U.S. Census Bureau and creating maps that I will be uploading to github pages.
+
+
+
