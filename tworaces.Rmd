@@ -1,0 +1,37 @@
+---
+title: "tworaces.Rmd"
+author: "Jackson Roe"
+date: '2022-06-30'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(tidycensus)
+library(ggthemes)
+library(tigris)
+```
+
+```{r}
+continental <- state.name[! state.name %in% c("Alaska", "Hawaii")]
+
+races <- get_acs(geography = "tract",
+        variables = "B02001_008", 
+        year = 2018,
+        state = continental,
+        geometry = TRUE,
+        summary_var = "B02001_001")
+
+tworaces_graph <- races |> 
+  mutate(Percent = 100 * (estimate / summary_est)) |> 
+  ggplot(aes(fill = Percent)) +
+  geom_sf(size = 0.003) + 
+  scale_fill_viridis_c(direction = -1, option = "inferno") + 
+  labs(title = "Percent of People Who are Two or More Races by Census Tract",
+       caption = "Source: American Community Survey 2014-2018") +
+  theme_void()
+```
+
+
+
